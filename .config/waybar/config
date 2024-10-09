@@ -1,0 +1,58 @@
+//
+// ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗
+// ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+// ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝
+// ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+// ╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║
+//  ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+//
+//
+
+{
+    "layer": "top",
+    "height": 40,
+
+    "include": ["$HOME/.config/waybar/modules.json"],
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window", "group/drawtray"],
+    "modules-center": ["clock"],
+    "modules-right": ["group/system", "group/keyboard", "group/hardware", "custom/wlogout"],
+
+    "group/drawtray": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power", //el default es hidden
+            "transition-top-to-bottom": true,
+        },
+        "modules": [
+            "tray"
+        ]
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "backlight",
+            "pulseaudio",
+            "battery"
+        ]
+    },
+
+    "group/keyboard": {
+        "orientation": "horizontal",
+        "modules": [
+            "network",
+            "bluetooth"
+        ]
+    },
+
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "temperature",
+            "memory"
+        ]
+    }
+}
