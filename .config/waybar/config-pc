@@ -1,0 +1,30 @@
+// PC de escritorio: barra completa en el 27" (DP-3) y reducida en el 22" (HDMI-A-1).
+// La elige ~/.config/hypr/hyprland.lua cuando el equipo es arch-pc.
+// Sin batería ni brillo, y la temperatura sale del sensor del Ryzen (k10temp).
+[
+    {
+        "include": ["$HOME/.config/waybar/config"],
+        "output": "DP-3",
+        "group/system": {
+            "orientation": "horizontal",
+            "modules": [
+                "pulseaudio"
+            ]
+        },
+        "temperature": {
+            "format": "<span color=\"#33CCFF\"> </span><span weight=\"bold\">{temperatureC}°C </span>",
+            "format-critical": "<span color=\"#E42022\"> </span><span color=\"#E42022\" weight=\"bold\">{temperatureC}°C </span>",
+            "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+            "input-filename": "temp1_input",
+            "critical-threshold": 80,
+            "tooltip": false
+        }
+    },
+    {
+        "include": ["$HOME/.config/waybar/config"],
+        "output": "HDMI-A-1",
+        "modules-left": ["ext/workspaces", "hyprland/window"],
+        "modules-center": ["clock"],
+        "modules-right": []
+    }
+]

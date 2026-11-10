@@ -45,13 +45,30 @@ hl.monitor({
     scale    = "auto",
 })
 
--- HDMI screen sits to the left of the built-in one
-hl.monitor({
-    output   = "HDMI-A-1",
-    mode     = "preferred",
-    position = "0x0",
-    scale    = "auto",
-})
+if isDesktop then
+    -- Desktop: 27" Samsung on DP (main, highest refresh rate) on the left,
+    -- 22" Samsung on HDMI to its right
+    hl.monitor({
+        output   = "DP-3",
+        mode     = "highrr",
+        position = "0x0",
+        scale    = 1,
+    })
+    hl.monitor({
+        output   = "HDMI-A-1",
+        mode     = "preferred",
+        position = "2560x0",
+        scale    = 1,
+    })
+else
+    -- HDMI screen sits to the left of the built-in one
+    hl.monitor({
+        output   = "HDMI-A-1",
+        mode     = "preferred",
+        position = "0x0",
+        scale    = "auto",
+    })
+end
 
 -- Built-in screen: scale 1 on its own, 1.5 as a second monitor next to the HDMI
 local function applyLaptopScale()
@@ -71,7 +88,12 @@ local function refreshMonitorLayout()
         applyLaptopScale()
     end
 
-    local config = (not isDesktop and hl.get_monitor("HDMI-A-1")) and "config-dual" or "config"
+    local config
+    if isDesktop then
+        config = "config-pc"
+    else
+        config = hl.get_monitor("HDMI-A-1") and "config-dual" or "config"
+    end
     if config ~= waybarConfig then
         waybarConfig = config
         hl.exec_cmd("pkill -x waybar; waybar -c $HOME/.config/waybar/" .. config)
