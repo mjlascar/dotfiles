@@ -50,7 +50,7 @@ if isDesktop then
     -- 22" Samsung on HDMI to its right
     hl.monitor({
         output   = "DP-3",
-        mode     = "highrr",
+        mode     = "2560x1440@165",
         position = "0x0",
         scale    = 1,
     })
