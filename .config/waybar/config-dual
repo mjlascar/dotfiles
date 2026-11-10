@@ -1,0 +1,15 @@
+// Laptop + HDMI: barra completa en la HDMI y reducida en la laptop.
+// La elige ~/.config/hypr/hyprland.lua; con la laptop sola usa "config".
+[
+    {
+        "include": ["$HOME/.config/waybar/config"],
+        "output": "HDMI-A-1"
+    },
+    {
+        "include": ["$HOME/.config/waybar/config"],
+        "output": "eDP-1",
+        "modules-left": ["ext/workspaces", "hyprland/window"],
+        "modules-center": ["clock"],
+        "modules-right": []
+    }
+]

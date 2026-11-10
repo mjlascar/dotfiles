@@ -1,5 +1,5 @@
 {
-    "hyprland/workspaces": {
+    "ext/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "1": "I",
@@ -14,11 +14,11 @@
             "10": "X"
         },
         "on-click": "activate",
-        "sort-by-number": true,
+        "sort-by-name": true,
         "active-only": false
     },
     "hyprland/window": {
-        "format": "<span foreground=\"#A7C080\"> </span> {initialTitle}",
+        "format": "<span foreground=\"#33CCFF\"> </span> {initialTitle}",
         "max-length": 100
     },
     "clock": {
@@ -33,7 +33,7 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "<span foreground=\"#A7C080\"> {icon} </span><span weight=\"bold\"> {percent}% </span>",
+        "format": "<span foreground=\"#33CCFF\"> {icon} </span><span weight=\"bold\"> {percent}% </span>",
         "format-icons": [
             "",
             ""
@@ -42,9 +42,9 @@
         "tooltip-format": "Brightness"
     },
     "pulseaudio": {
-        "format": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#A7C080\">{icon} </span><span weight=\"bold\"> {volume}% </span><span foreground=\"#3D484D\">|</span>",
-        "format-bluetooth": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#A7C080\"></span><span weight=\"bold\"> {volume}% </span>",
-        "format-muted": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#A7C080\"> </span><span weight=\"bold\">X </span><span foreground=\"#3D484D\">|</span>",
+        "format": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#33CCFF\">{icon} </span><span weight=\"bold\"> {volume}% </span><span foreground=\"#3D484D\">|</span>",
+        "format-bluetooth": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#33CCFF\"></span><span weight=\"bold\"> {volume}% </span>",
+        "format-muted": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#33CCFF\"> </span><span weight=\"bold\">X </span><span foreground=\"#3D484D\">|</span>",
         "format-icons": {
             "headphone": "",
             "default": [
@@ -61,8 +61,8 @@
     },
     "network": {
         "format": "   ",
-        "format-wifi": "<span foreground=\"#A7C080\">   </span>",
-        "format-ethernet": "<span foreground=\"#A7C080\"> 󰊗 </span>",
+        "format-wifi": "<span foreground=\"#33CCFF\">   </span>",
+        "format-ethernet": "<span foreground=\"#33CCFF\"> 󰊗 </span>",
         "format-disconnected": "   ",
         "on-click": "kitty -e nmtui",
         "tooltip-format": "{ifname} via {gwaddr}",
@@ -71,8 +71,8 @@
         "tooltip-format-disconnected": "zzz"
     },
     "bluetooth": {
-        "format-on": "<span foreground=\"#3D484D\">|</span><span foreground=\"#A7C080\" weight=\"bold\">  </span>",
-        "format-connected": "<span foreground=\"#3D484D\">|</span><span foreground=\"#A7C080\" weight=\"bold\">  </span>",
+        "format-on": "<span foreground=\"#3D484D\">|</span><span foreground=\"#33CCFF\" weight=\"bold\">  </span>",
+        "format-connected": "<span foreground=\"#3D484D\">|</span><span foreground=\"#33CCFF\" weight=\"bold\">  </span>",
         "format": "<span foreground=\"#3D484D\">|</span><span>  </span>",
         "on-click": "rfkill toggle bluetooth",
         "on-click-right": "blueman-manager",
@@ -82,7 +82,7 @@
         "tooltip-format-enumerate-connected": "{device_alias}"
     },
     "hyprland/language": {
-        "format": "<span foreground=\"#A7C080\"> 󰌌 </span> <span foreground=\"#3D484D\">|</span>",
+        "format": "<span foreground=\"#33CCFF\"> 󰌌 </span> <span foreground=\"#3D484D\">|</span>",
         "tooltip-format": " {short} "
     },
     "battery": {
@@ -91,9 +91,9 @@
             "warning": 30,
             "critical": 20
         },
-        "format": "<span color=\"#A7C080\"> {icon}</span><span weight=\"bold\"> {capacity}% </span>",
-        "format-charging": "<span foreground=\"#A7C080\"> {icon}  </span><span weight=\"bold\">{capacity}% </span>",
-        "format-full": "<span foreground=\"#82A55F\"> {icon} </span>",
+        "format": "<span color=\"#33CCFF\"> {icon}</span><span weight=\"bold\"> {capacity}% </span>",
+        "format-charging": "<span foreground=\"#33CCFF\"> {icon}  </span><span weight=\"bold\">{capacity}% </span>",
+        "format-full": "<span foreground=\"#33CCFF\"> {icon} </span>",
         "format-icons": [
             "󰁻",
             "󰁼",
@@ -105,7 +105,7 @@
         "tooltip-format": "{timeTo} | {capacity} % | {power} W"
     },
     "temperature": {
-        "format": "<span color=\"#A7C080\"> </span><span weight=\"bold\">{temperatureC}°C </span>",
+        "format": "<span color=\"#33CCFF\"> </span><span weight=\"bold\">{temperatureC}°C </span>",
         "format-critical": "<span color=\"#E42022\"> </span><span color=\"#E42022\" weight=\"bold\">{temperatureC}°C </span>",
         "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "critical-threshold": 50,
@@ -118,10 +118,10 @@
         "return-type": "json"
     },
     "cpu": {
-        "format": " <span foreground=\"#A7C080\" weight=\"bold\">CPU</span><span weight=\"bold\"> {usage}% </span>"
+        "format": " <span foreground=\"#33CCFF\" weight=\"bold\">CPU</span><span weight=\"bold\"> {usage}% </span>"
     },
     "memory": {
-        "format": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#A7C080\" weight=\"bold\">RAM</span><span weight=\"bold\"> {}% </span>",
+        "format": "<span foreground=\"#3D484D\">|</span> <span foreground=\"#33CCFF\" weight=\"bold\">RAM</span><span weight=\"bold\"> {}% </span>",
         "on-click": "kitty -e htop"
     },
     "custom/wlogout": {

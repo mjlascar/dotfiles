@@ -14,7 +14,7 @@
 
     "include": ["$HOME/.config/waybar/modules.json"],
 
-    "modules-left": ["hyprland/workspaces", "hyprland/window", "group/drawtray"],
+    "modules-left": ["ext/workspaces", "hyprland/window", "group/drawtray"],
     "modules-center": ["clock"],
     "modules-right": ["group/system", "group/keyboard", "group/hardware", "custom/wlogout"],
 

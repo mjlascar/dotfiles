@@ -1,0 +1,11 @@
+acpilight
+epson-inkjet-printer-escpr
+epson-inkjet-printer-escpr-debug
+hyprforest-installer-bin
+neofetch
+swaylock-effects-git
+ttf-ms-fonts
+visual-studio-code-bin
+wlogout
+yay
+yay-debug
