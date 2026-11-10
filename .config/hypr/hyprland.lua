@@ -16,6 +16,23 @@
 -- require("myColors")
 
 
+-------------------
+---- THIS HOST ----
+-------------------
+
+-- Same config on both machines: "arch" is the laptop, "arch-pc" the desktop
+-- (US keyboard, NVIDIA card, no built-in screen or battery)
+local function readHostname()
+    local f = io.open("/etc/hostname")
+    if not f then return "" end
+    local name = f:read("l") or ""
+    f:close()
+    return name
+end
+
+local isDesktop = readHostname() == "arch-pc"
+
+
 ------------------
 ---- MONITORS ----
 ------------------
@@ -50,9 +67,11 @@ end
 local waybarConfig = nil
 
 local function refreshMonitorLayout()
-    applyLaptopScale()
+    if not isDesktop then
+        applyLaptopScale()
+    end
 
-    local config = hl.get_monitor("HDMI-A-1") and "config-dual" or "config"
+    local config = (not isDesktop and hl.get_monitor("HDMI-A-1")) and "config-dual" or "config"
     if config ~= waybarConfig then
         waybarConfig = config
         hl.exec_cmd("pkill -x waybar; waybar -c $HOME/.config/waybar/" .. config)
@@ -64,7 +83,9 @@ local function scheduleMonitorRefresh()
     hl.timer(refreshMonitorLayout, { timeout = 500, type = "oneshot" })
 end
 
-applyLaptopScale()
+if not isDesktop then
+    applyLaptopScale()
+end
 hl.on("hyprland.start", scheduleMonitorRefresh)
 hl.on("monitor.added", scheduleMonitorRefresh)
 hl.on("monitor.removed", scheduleMonitorRefresh)
@@ -100,7 +121,9 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("mako")
     hl.exec_cmd("easyeffects")
     hl.exec_cmd("$HOME/.config/hypr/scripts/sleep.sh")
-    hl.exec_cmd("$HOME/.config/hypr/scripts/low_battery.sh")
+    if not isDesktop then
+        hl.exec_cmd("$HOME/.config/hypr/scripts/low_battery.sh")
+    end
 end)
 
 
@@ -123,6 +146,12 @@ hl.env("SDL_VIDEODRIVER", "wayland")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+
+-- NVIDIA (desktop only), see https://wiki.hypr.land/nvidia/
+if isDesktop then
+    hl.env("LIBVA_DRIVER_NAME", "nvidia")
+    hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+end
 
 
 -----------------------
@@ -297,8 +326,9 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "es,us",
-        kb_variant = "",
+        -- Desktop keyboard is US: right Alt + n = ñ, right Alt + vowel = accent
+        kb_layout  = isDesktop and "us" or "es,us",
+        kb_variant = isDesktop and "altgr-intl" or "",
         kb_model   = "",
         kb_options = "",
         kb_rules   = "",
